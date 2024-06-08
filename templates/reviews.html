@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Reviews{% endblock %}
+
+{% block content %}
+<h1>Leave a Review</h1>
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.name.label }}<br>
+        {{ form.name(class="form-control") }}<br>
+        {% for error in form.name.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.comment.label }}<br>
+        {{ form.comment(class="form-control") }}<br>
+        {% for error in form.comment.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.rating.label }}<br>
+        {{ form.rating(class="form-control") }}<br>
+        {% for error in form.rating.errors %}
+            <span style="color: red;">{{ error }}</span><br>
+        {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<hr>
+<h2>Reviews</h2>
+{% for review in reviews %}
+    <div>
+        <strong>{{ review.name }}</strong>: {{ review.comment }}
+    </div>
+{% endfor %}
+{% endblock %}
